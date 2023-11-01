@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+  my-django:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    image: my_django
+    container_name: my-django
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    env_file:
+      - ./enviroments/dev.env
+    volumes:
+      - ./compose/supervisor/conf.d:/etc/supervisor/conf.d
+      - ./volumes/logs:/var/log
+      - .:/src/app
+    command: /start.sh
+    ports:
+      - 8000:8000
+    depends_on:
+      - my-mysql
+      - my-redis
+
+  my-mysql:
+    image: mysql:8.1.0
+    restart: always
+    container_name: my-mysql
+    env_file:
+      - ./enviroments/dev.env
+    ports:
+      - 3006:3006
+
+  my-redis:
+    image: redis:7.2.1
+    container_name: my-redis
+    env_file:
+      - ./enviroments/dev.env
+    command: --port 6381
+    ports:
+      - 6381:6381
+
+networks:
+  m-net:
+    driver: bridge
