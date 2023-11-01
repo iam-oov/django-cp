@@ -3,7 +3,7 @@ from django.db import models
 
 class Settlement(models.Model):
     slug = models.SlugField(max_length=200)
-    key = models.PositiveSmallIntegerField()
+    key = models.CharField(max_length=20)
     name = models.CharField(max_length=200)
     zone_type = models.CharField(max_length=200)
     type = models.CharField(max_length=200)
@@ -14,7 +14,7 @@ class Settlement(models.Model):
 
 class Municipality(models.Model):
     slug = models.SlugField(max_length=200)
-    key = models.PositiveSmallIntegerField()
+    key = models.CharField(max_length=20)
     name = models.CharField(max_length=200)
     settlement = models.ForeignKey(
         Settlement, on_delete=models.CASCADE)
@@ -25,7 +25,7 @@ class Municipality(models.Model):
 
 class FederalEntity(models.Model):
     slug = models.SlugField(max_length=200)
-    key = models.PositiveSmallIntegerField()
+    key = models.CharField(max_length=20)
     name = models.CharField(max_length=200)
     code = models.CharField(max_length=200, null=True)
     municipality = models.ForeignKey(

@@ -2,6 +2,7 @@
 
 import os, sys
 import pandas as pd
+from slugify import slugify
 
 from django.core.wsgi import get_wsgi_application
 
@@ -29,7 +30,18 @@ from entities import models
 pathFileCSV = os.path.join(BASE_DIR, 'seeds/1-cp.txt')
 SAVE_DATABASE = True
 
-data = pd.read_csv(pathFileCSV, sep='|')
+data = pd.read_csv(pathFileCSV, sep='|', dtype={'id_asenta_cpcons': str})
 
 for row in data.itertuples():
-  print(row.d_tipo_asenta)
+
+  # import pdb; pdb.set_trace()
+
+  obj = models.Settlement(
+    slug = slugify(row.d_asenta),
+    key = row.id_asenta_cpcons,
+    name = row.d_asenta,
+    zone_type = row.d_tipo_asenta,
+    type = row.d_zona
+  )
+
+  obj.save()
