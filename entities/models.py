@@ -9,7 +9,7 @@ class Settlement(models.Model):
     type = models.CharField(max_length=200)
 
     def __str__(self):
-        return "{0}: {1}".format(self.pk, self.name)
+        return "({0}) {1}".format(self.pk, self.name)
 
 
 class Municipality(models.Model):
@@ -20,7 +20,7 @@ class Municipality(models.Model):
         Settlement, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{0}: {1}".format(self.pk, self.name)
+        return "({0}) {1}".format(self.pk, self.name)
 
 
 class FederalEntity(models.Model):
@@ -32,7 +32,7 @@ class FederalEntity(models.Model):
         Municipality, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{0}: {1}".format(self.pk, self.name)
+        return "({0}) {1}".format(self.pk, self.name)
 
 
 class Entity(models.Model):
@@ -43,4 +43,4 @@ class Entity(models.Model):
         FederalEntity, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{0}: {1}".format(self.zip_code, self.locality)
+        return "({0}) {1}".format(self.zip_code, self.locality)
