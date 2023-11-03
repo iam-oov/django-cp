@@ -93,7 +93,7 @@ DATABASES = {
 }
 
 # seeds
-SEED_CP = BASE_DIR / 'seeds/CPmini.txt'
+SEED_CP = BASE_DIR / 'seeds/CPdescarga.txt'
 
 
 # Password validation
