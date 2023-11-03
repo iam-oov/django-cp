@@ -2,42 +2,43 @@ from django.contrib import admin
 from .models import Entity, FederalEntity, Municipality, Settlement
 
 
-class EntityInline(admin.TabularInline):
-    model = Entity
-    extra = 1
-
-
-class FederalEntityInline(admin.TabularInline):
-    model = FederalEntity
-    extra = 1
-
-
 class MunicipalityInline(admin.TabularInline):
     model = Municipality
     extra = 1
 
 
-class EntityAdmin(admin.ModelAdmin):
-    list_display = ['zip_code', 'locality', 'slug', 'federal_entity_r']
-    prepopulated_fields = {'slug': ['locality']}
+class SettlementInline(admin.TabularInline):
+    model = Settlement
+    extra = 1
+
+
+class EntityInline(admin.TabularInline):
+    model = Entity
+    extra = 1
 
 
 class FederalEntityAdmin(admin.ModelAdmin):
-    list_display = ['slug', 'key', 'name', 'code', 'municipality_r']
+    list_display = ['slug', 'key', 'name', 'code']
+    prepopulated_fields = {'slug': ['name']}
+    inlines = [MunicipalityInline]
+
+
+class MunicipalityAdmin(admin.ModelAdmin):
+    list_display = ['slug', 'key', 'name', 'federal_entity']
+    prepopulated_fields = {'slug': ['name']}
+    inlines = [SettlementInline]
+
+
+class SettlementAdmin(admin.ModelAdmin):
+    list_display = ['slug', 'key', 'name', 'zone_type', 'type', 'municipality']
     prepopulated_fields = {'slug': ['name']}
     inlines = [EntityInline]
 
 
-class MunicipalityAdmin(admin.ModelAdmin):
-    list_display = ['slug', 'key', 'name', 'settlement_r']
-    prepopulated_fields = {'slug': ['name']}
-    inlines = [FederalEntityInline]
-
-
-class SettlementAdmin(admin.ModelAdmin):
-    list_display = ['slug', 'key', 'name', 'zone_type', 'type']
-    prepopulated_fields = {'slug': ['name']}
-    inlines = [MunicipalityInline]
+class EntityAdmin(admin.ModelAdmin):
+    list_display = ['zip_code', 'locality', 'slug', 'settlement']
+    search_fields = ['zip_code']
+    prepopulated_fields = {'slug': ['locality']}
 
 
 admin.site.register(Entity, EntityAdmin)

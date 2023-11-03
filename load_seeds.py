@@ -27,13 +27,15 @@ from entities import models
 
 # CODE
 # =====================================================
-pathFileCSV = os.path.join(BASE_DIR, 'seeds/1-cp.txt')
+# pathFileCSV = os.path.join(BASE_DIR, 'seeds/CPdescarga.txt')
+pathFileCSV = os.path.join(BASE_DIR, 'seeds/2-cp.txt')
 SAVE_DATABASE = True
 
 data = pd.read_csv(
   pathFileCSV,
   sep='|',
   encoding='utf8',
+  na_filter=False,  # empty fields as empty strings
   dtype={
     'id_asenta_cpcons': str,
     'c_mnpio': str,
@@ -77,14 +79,12 @@ for row in data.itertuples():
   }
 
   if SAVE_DATABASE:
-        # get or create: Settlement
-        settlement, created = models.Settlement.objects.get_or_create(
-            slug=config['settlement']['slug'],
+        # get or create: FederalEntity
+        federal_entity, created = models.FederalEntity.objects.get_or_create(
+            slug=config['federal_entity']['slug'],
             defaults={
-                'key': config['settlement']['key'],
-                'name': config['settlement']['name'],
-                'zone_type': config['settlement']['zone_type'],
-                'type': config['settlement']['type']
+                'key': config['federal_entity']['key'],
+                'name': config['federal_entity']['name'],
             }
         )
 
@@ -94,40 +94,42 @@ for row in data.itertuples():
             defaults={
                 'key': config['municipality']['key'],
                 'name': config['municipality']['name'],
-                'settlement_r': settlement
+                'federal_entity': federal_entity
             }
         )
 
         if (not created):
-            municipality.settlement_r = settlement
+            municipality.federal_entity = federal_entity
             municipality.save()
 
-        # get or create: FederalEntity
-        federal_entity, created = models.FederalEntity.objects.get_or_create(
-            slug=config['federal_entity']['slug'],
+        # get or create: Settlement
+        settlement, created = models.Settlement.objects.get_or_create(
+            slug=config['settlement']['slug'],
             defaults={
-                'key': config['federal_entity']['key'],
-                'name': config['federal_entity']['name'],
-                'municipality_r': municipality
+                'key': config['settlement']['key'],
+                'name': config['settlement']['name'],
+                'zone_type': config['settlement']['zone_type'],
+                'type': config['settlement']['type'],
+                'municipality': municipality
             }
         )
 
         if (not created):
-            federal_entity.municipality_r = municipality
-            federal_entity.save()
+            settlement.municipality = municipality
+            settlement.save()
 
         # get or create: Entity
         entity, created = models.Entity.objects.get_or_create(
             slug=config['entity']['slug'],
             defaults={
                 'zip_code': config['entity']['zip_code'],
-                'locality': config['entity']['locality'],
-                'federal_entity_r': federal_entity
+                'locality': config['entity']['locality'] or '',
+                'settlement': settlement
             }
         )
 
         if (not created):
-            entity.federal_entity_r = federal_entity
+            entity.settlement = settlement
             entity.save()
 
-print('ok')
+print('Ready!')

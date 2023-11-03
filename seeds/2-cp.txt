@@ -1,0 +1,24 @@
+d_codigo|d_asenta|d_tipo_asenta|D_mnpio|d_estado|d_ciudad|d_CP|c_estado|c_oficina|c_CP|c_tipo_asenta|c_mnpio|id_asenta_cpcons|d_zona|c_cve_ciudad
+30503|Las Pampas|Rancho|Tonalá|Chiapas||30501|07|30501||48|097|0002|Rural|
+30503|Monte Verde|Rancho|Tonalá|Chiapas||30501|07|30501||48|097|0003|Rural|
+30503|Santa Cruz|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|0004|Rural|
+30503|San Cipriano|Rancho|Tonalá|Chiapas||30501|07|30501||48|097|0008|Rural|
+30503|El Congreso|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|0010|Rural|
+30503|Manuel Velasco Suárez|Barrio|Tonalá|Chiapas||30501|07|30501||02|097|0011|Rural|
+30503|Santa Rosa las Limas|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|0014|Rural|
+30503|San Nicolás|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|0015|Rural|
+30503|Villahermosa|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|0016|Rural|
+30503|Huizachal|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|1413|Rural|
+30503|Huachipilín Calentura (La Ramadita)|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|1416|Rural|
+30503|Durango|Ejido|Tonalá|Chiapas||30501|07|30501||15|097|1418|Rural|
+30503|El Guayabo|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|1419|Rural|
+30503|El Terrero|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|1420|Rural|
+30503|Huanacastal|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|1421|Rural|
+30503|Ignacio Ramirez|Pueblo|Tonalá|Chiapas||30501|07|30501||28|097|1422|Rural|
+30503|Paredón|Pueblo|Tonalá|Chiapas||30501|07|30501||28|097|1423|Rural|
+30503|San Francisco Ocotal|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|2939|Rural|
+30503|Galeana Calentura|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|5837|Rural|
+30503|Riachuelo|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|5871|Rural|
+30503|San Luqueño (Pesquería San Luqueño la Costa)|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|5875|Rural|
+30503|Santiago Buenavista|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|6736|Rural|
+30503|Llano Largo|Ranchería|Tonalá|Chiapas||30501|07|30501||29|097|6738|Rural|
