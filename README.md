@@ -5,7 +5,7 @@
 
   <p align="center">
     <br />
-    <a href="https://qpkphqfq-8000.usw3.devtunnels.ms/api/v1/codes/64000/">View Demo</a>
+    <a href="https://qpkphqfq-8000.usw3.devtunnels.ms/api/v1/codes/64000/">Link to {{HOST}}/api/v1/codes/64000/</a>
   </p>
 </div>
 
