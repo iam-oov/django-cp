@@ -8,7 +8,6 @@ WORKDIR $APP_DIR
 
 RUN useradd $USER_NAME && chown $USER_NAME:$USER_NAME -R $APP_DIR \
   && apt-get update \
-  && apt-get install -y --no-install-recommends supervisor \
   && pip install --no-cache-dir "setuptools<58.0.0" \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
