@@ -9,6 +9,8 @@ services:
       - ./enviroments/dev.env
     ports:
       - 3007:3007
+    volumes:
+      - ./compose/mysql:/var/lib/mysql
 
   my-redis:
     image: redis:7.2.1
@@ -31,7 +33,6 @@ services:
     env_file:
       - ./enviroments/dev.env
     volumes:
-      - ./compose/supervisor/conf.d:/etc/supervisor/conf.d
       - ./volumes/logs:/var/log
       - .:/src/app
     command: /start.sh

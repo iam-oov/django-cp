@@ -54,6 +54,13 @@ class CodeDetail(APIView):
 
 class LoadDb(APIView):
     def get(self, request):
-        email = request.query_params['email'] or ''
+        email = request.query_params.get('email') or ''
         loadDb.delay(email)
-        return JsonResponse({'msg': 'Se te notificara cuando termine.'})
+
+        prefix = 'La operacion de cargado tarda aprox. 15 min.'
+        if email:
+            return JsonResponse({
+                'msg': f'{prefix} Se te enviara un correo a {email} al finalizar la operacion.'
+            })
+
+        return JsonResponse({'msg': f'{prefix}'})

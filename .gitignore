@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# volumes
+compose/mysql/
+compose/supervisor/
+
 # C extensions
 *.so
 
