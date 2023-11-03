@@ -9,8 +9,6 @@ services:
       - ./enviroments/dev.env
     ports:
       - 3007:3007
-    volumes:
-      - ./compose/mysql:/var/lib/mysql
 
   my-redis:
     image: redis:7.2.1
