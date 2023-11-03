@@ -1,9 +1,11 @@
 from django.http import Http404
 from rest_framework.views import APIView
 from django.http import JsonResponse
-
+import json
 
 from entities import models
+from .utils import get_redis
+from .tasks import loadDb
 
 
 class CodeDetail(APIView):
@@ -12,6 +14,10 @@ class CodeDetail(APIView):
 
         if not entities:
             raise Http404()
+
+        data_in_redis = get_redis().get('zip_code')
+        if data_in_redis:
+            return JsonResponse(json.loads(data_in_redis))
 
         context = {}
 
@@ -39,4 +45,14 @@ class CodeDetail(APIView):
                 }
             })
 
+        # save in redis
+        get_redis().set('zip_code', json.dumps(context))
+
         return JsonResponse(context)
+
+
+class LoadDb(APIView):
+    def get(self, request):
+        email = request.query_params['email'] or ''
+        loadDb.delay(email)
+        return JsonResponse({'msg': 'Se te notificara cuando termine.'})

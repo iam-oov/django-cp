@@ -1,6 +1,24 @@
 version: "3.7"
 
 services:
+  my-mysql:
+    image: mysql:8.1.0
+    restart: always
+    container_name: my-mysql
+    env_file:
+      - ./enviroments/dev.env
+    ports:
+      - 3006:3006
+
+  my-redis:
+    image: redis:7.2.1
+    container_name: my-redis
+    env_file:
+      - ./enviroments/dev.env
+    command: --port 6381
+    ports:
+      - 6381:6381
+
   my-django:
     build:
       context: .
@@ -23,23 +41,21 @@ services:
       - my-mysql
       - my-redis
 
-  my-mysql:
-    image: mysql:8.1.0
-    restart: always
-    container_name: my-mysql
+  m-celery:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    image: my-django # referencia a django para que no construya img
+    container_name: my-celery
+    restart: unless-stopped
     env_file:
       - ./enviroments/dev.env
-    ports:
-      - 3006:3006
-
-  my-redis:
-    image: redis:7.2.1
-    container_name: my-redis
-    env_file:
-      - ./enviroments/dev.env
-    command: --port 6381
-    ports:
-      - 6381:6381
+    depends_on:
+      - my-mysql
+      - my-redis
+    volumes:
+      - .:/src/app
+    command: celery -A setup worker --loglevel=info --concurrency 1 -E
 
 networks:
   m-net:
