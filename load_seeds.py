@@ -27,8 +27,8 @@ from entities import models
 
 # CODE
 # =====================================================
-# pathFileCSV = os.path.join(BASE_DIR, 'seeds/CPdescarga.txt')
-pathFileCSV = os.path.join(BASE_DIR, 'seeds/2-cp.txt')
+pathFileCSV = os.path.join(BASE_DIR, 'seeds/CPdescarga.txt')
+
 SAVE_DATABASE = True
 
 data = pd.read_csv(
