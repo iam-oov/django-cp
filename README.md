@@ -16,7 +16,7 @@ Django-CPs es una aplicación minimalista en Django que implementa una API-REST 
 
 ## Acerca del Proyecto
 
-A primera vista, la solución parece consistir en simples inserciones y selecciones en una tabla de MySQL para recuperar los vecindarios asociados a un código postal. Pero requiere un analisis correcto de las relaciones a DB, UX en los tiempos de carga y mantener la informacion actualizada.
+A primera vista, la solución parece consistir en simples inserciones y selecciones en una tabla de MySQL para recuperar las entidades asociadas a un código postal. Pero requiere un analisis correcto de las relaciones a DB, UX en los tiempos de carga y mantener la informacion actualizada.
 
 ### Características Principales
 
@@ -33,7 +33,7 @@ Para configurar una copia local, sigue estos sencillos pasos:
 ### Prerrequisitos
 
 - Docker con Docker Compose
-- Crea un archivo llamado `dev.env` dentro del directorio `environments` para asignar crear e inicialiar las variables de entorno.
+- Crea un archivo llamado `dev.env` dentro del directorio `environments` para crear e inicialiar tus variables de entorno.
 
 Aquí tienes un ejemplo del contenido del archivo:
 
