@@ -15,7 +15,8 @@ class CodeDetail(APIView):
         if not entities:
             raise Http404()
 
-        data_in_redis = get_redis().get('zip_code')
+        # get cache
+        data_in_redis = get_redis().get(zip_code)
         if data_in_redis:
             return JsonResponse(json.loads(data_in_redis))
 
@@ -45,8 +46,8 @@ class CodeDetail(APIView):
                 }
             })
 
-        # save in redis
-        get_redis().set('zip_code', json.dumps(context))
+        # save in cache
+        get_redis().set(zip_code, json.dumps(context))
 
         return JsonResponse(context)
 
