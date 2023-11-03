@@ -1,11 +1,14 @@
 # Django-CPs
 
 <div align="center">
-  <h3 align="center">Best-README-Template</h3>
-
   <p align="center">
     <br />
     <a href="https://qpkphqfq-8000.usw3.devtunnels.ms/api/v1/codes/64000/">Link to {{HOST}}/api/v1/codes/64000/</a>
+    <br />
+    <br />
+    <a href="https://qpkphqfq-8000.usw3.devtunnels.ms/admin/">Link to {{HOST}}/admin/</a>
+    <br />
+    USERNAME: root ~ PASSWORD: 1234abcd
   </p>
 </div>
 
