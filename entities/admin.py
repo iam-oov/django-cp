@@ -18,20 +18,20 @@ class MunicipalityInline(admin.TabularInline):
 
 
 class EntityAdmin(admin.ModelAdmin):
-    list_display = ['zip_code', 'locality', 'slug']
+    list_display = ['zip_code', 'locality', 'slug', 'federal_entity_r']
     prepopulated_fields = {'slug': ['locality']}
 
 
-class MunicipalityAdmin(admin.ModelAdmin):
-    list_display = ['slug', 'key', 'name', 'settlement']
-    prepopulated_fields = {'slug': ['name']}
-    inlines = [FederalEntityInline]
-
-
 class FederalEntityAdmin(admin.ModelAdmin):
-    list_display = ['slug', 'key', 'name', 'code', 'municipality']
+    list_display = ['slug', 'key', 'name', 'code', 'municipality_r']
     prepopulated_fields = {'slug': ['name']}
     inlines = [EntityInline]
+
+
+class MunicipalityAdmin(admin.ModelAdmin):
+    list_display = ['slug', 'key', 'name', 'settlement_r']
+    prepopulated_fields = {'slug': ['name']}
+    inlines = [FederalEntityInline]
 
 
 class SettlementAdmin(admin.ModelAdmin):
