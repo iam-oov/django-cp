@@ -94,6 +94,7 @@ DATABASES = {
 
 # seeds
 SEED_CP = BASE_DIR / 'seeds/CPdescarga.txt'
+SEED_BASIC = BASE_DIR / 'seeds/CPbasic.txt'
 
 
 # Password validation
@@ -157,6 +158,13 @@ REDIS_HOST = os.environ.get('REDIS_HOST')
 REDIS_PORT = os.environ.get('REDIS_PORT')
 REDIS_DB = os.environ.get('REDIS_DB')
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': f'redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}',
+        'KEY_PREFIX': 'dj-'
+    }
+}
 
 # Celery
 CELERY_TASK_TRACK_STARTED = True

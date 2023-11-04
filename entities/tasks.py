@@ -11,8 +11,11 @@ from entities import models
 
 
 @shared_task
-def loadDb(email):
+def loadDb(email, template):
     pathFileCSV = settings.SEED_CP
+    if template in ['basic']:
+        print('---yayaiii')
+        pathFileCSV = settings.SEED_BASIC
 
     data = pd.read_csv(
         pathFileCSV,

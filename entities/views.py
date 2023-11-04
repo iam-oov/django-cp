@@ -1,10 +1,12 @@
+from re import template
 from django.http import Http404
 from rest_framework.views import APIView
+from django.core.cache import cache
 from django.http import JsonResponse
 import json
 
+
 from entities import models
-from .utils import get_redis
 from .tasks import loadDb
 
 
@@ -16,8 +18,9 @@ class CodeDetail(APIView):
             raise Http404()
 
         # get cache
-        data_in_redis = get_redis().get(zip_code)
+        data_in_redis = cache.get(zip_code)
         if data_in_redis:
+            print('entre a cacheeee', zip_code)
             return JsonResponse(json.loads(data_in_redis))
 
         context = {}
@@ -46,8 +49,8 @@ class CodeDetail(APIView):
                 }
             })
 
-        # save in cache
-        get_redis().set(zip_code, json.dumps(context))
+        # set in cache
+        cache.set(zip_code, json.dumps(context))
 
         return JsonResponse(context)
 
@@ -55,7 +58,9 @@ class CodeDetail(APIView):
 class LoadDb(APIView):
     def get(self, request):
         email = request.query_params.get('email') or ''
-        loadDb.delay(email)
+        _template = request.query_params.get('template') or ''
+
+        loadDb.delay(email, _template)
 
         prefix = 'La operacion de cargado tarda aprox. 15 min.'
         if email:
