@@ -20,7 +20,6 @@ class CodeDetail(APIView):
         # get cache
         data_in_redis = cache.get(zip_code)
         if data_in_redis:
-            print('entre a cacheeee', zip_code)
             return JsonResponse(json.loads(data_in_redis))
 
         context = {}
