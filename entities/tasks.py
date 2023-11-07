@@ -14,7 +14,6 @@ from entities import models
 def loadDb(email, template):
     pathFileCSV = settings.SEED_CP
     if template in ['basic']:
-        print('---yayaiii')
         pathFileCSV = settings.SEED_BASIC
 
     data = pd.read_csv(
