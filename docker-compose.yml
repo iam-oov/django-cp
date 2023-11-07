@@ -40,7 +40,7 @@ services:
       - my-mysql
       - my-redis
 
-  m-celery:
+  my-celery:
     build:
       context: .
       dockerfile: ./compose/django/Dockerfile
@@ -54,7 +54,23 @@ services:
       - my-redis
     volumes:
       - .:/src/app
-    command: celery -A setup worker --loglevel=info --concurrency 1 -E
+    command: celery -A setup worker --loglevel=info
+
+  my-celery-beat:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    image: my-django # referencia a django para que no construya img
+    container_name: my-celery-beat
+    restart: unless-stopped
+    env_file:
+      - ./enviroments/dev.env
+    depends_on:
+      - my-mysql
+      - my-redis
+    volumes:
+      - .:/src/app
+    command: celery -A setup beat -l info
 
 networks:
   m-net:

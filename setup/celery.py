@@ -20,3 +20,12 @@ app.autodiscover_tasks()
 @app.task(bind=True, ignore_result=True)
 def debug_task(self):
     print(f'Request: {self.request!r}')
+
+
+app.conf.beat_schedule = {
+    'print-message-ten-seconds': {
+        'task': 'print_msg_main',
+        'schedule': 10.0,
+        'args': ('Hello',)
+    },
+}
