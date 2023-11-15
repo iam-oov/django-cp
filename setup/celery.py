@@ -1,6 +1,8 @@
 import os
 
 from celery import Celery
+from celery.schedules import crontab
+
 
 # Set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'setup.settings')
@@ -23,9 +25,10 @@ def debug_task(self):
 
 
 app.conf.beat_schedule = {
+    # Executes every Monday morning at 7:30 a.m.
     'print-message-ten-seconds': {
-        'task': 'print_msg_main',
-        'schedule': 10.0,
+        'task': 'entities.tasks.print_message',
+        'schedule': crontab(minute=0, hour='*/1'),
         'args': ('Hello',)
     },
 }

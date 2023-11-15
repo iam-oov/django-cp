@@ -126,6 +126,6 @@ def load_db(email, template):
         )
 
 
-@shared_task(name="print_msg_main")
+@shared_task()
 def print_message(message, *args, **kwargs):
     print(f"Celery is working!! Message is {message}")
