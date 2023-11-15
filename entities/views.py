@@ -7,7 +7,7 @@ import json
 
 
 from entities import models
-from .tasks import loadDb
+from .tasks import load_db
 
 
 class CodeDetail(APIView):
@@ -54,12 +54,12 @@ class CodeDetail(APIView):
         return JsonResponse(context)
 
 
-class LoadDb(APIView):
+class load_db(APIView):
     def get(self, request):
         email = request.query_params.get('email') or ''
         _template = request.query_params.get('template') or ''
 
-        loadDb.delay(email, _template)
+        load_db.delay(email, _template)
 
         prefix = 'La operacion de cargado tarda aprox. 15 min.'
         if email:

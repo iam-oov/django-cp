@@ -1,0 +1,4 @@
+https://dev.to/ashiqursuperfly/setting-up-asynchronous-tasks-32f0
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment
+https://saasitive.com/tutorial/django-celery-redis-postgres-docker-compose/
+https://www.youtube.com/watch?v=BGiQJgWukRA

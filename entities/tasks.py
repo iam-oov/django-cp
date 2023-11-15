@@ -1,4 +1,5 @@
 import time
+import datetime
 import os
 import pandas as pd
 
@@ -11,7 +12,7 @@ from entities import models
 
 
 @shared_task
-def loadDb(email, template):
+def load_db(email, template):
     pathFileCSV = settings.SEED_CP
     if template in ['basic']:
         pathFileCSV = settings.SEED_BASIC
@@ -122,3 +123,8 @@ def loadDb(email, template):
             [email],
             fail_silently=True,
         )
+
+
+@shared_task()
+def print_message(message, *args, **kwargs):
+    print(f"Celery is working!! Message is {message}")
