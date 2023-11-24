@@ -10,3 +10,4 @@ celery==5.3.4
 hiredis==2.2.3
 django-celery-beat==2.5.0
 django-celery-results==2.5.1
+djangorestframework-api-key==3.0.0

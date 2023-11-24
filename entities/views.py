@@ -1,6 +1,7 @@
 from re import template
 from django.http import Http404
 from rest_framework.views import APIView
+from rest_framework_api_key.permissions import HasAPIKey
 from django.core.cache import cache
 from django.http import JsonResponse
 import json
@@ -11,6 +12,8 @@ from .tasks import load_db
 
 
 class CodeDetail(APIView):
+    permission_classes = [HasAPIKey]
+
     def get(self, request, zip_code, format=None):
         entities = models.Entity.objects.filter(zip_code=zip_code)
 

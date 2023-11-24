@@ -34,19 +34,27 @@ else:
 
 
 # Application definition
-
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
+]
+
+THIRTY_APPS = [
     'rest_framework',
+    'rest_framework_api_key',
     'django_celery_beat',
-    'django_celery_results',
+    'django_celery_results'
+]
+
+MY_APPS = [
     'entities',
 ]
+
+INSTALLED_APPS = DJANGO_APPS + THIRTY_APPS + MY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
