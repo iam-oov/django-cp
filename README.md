@@ -94,12 +94,12 @@ Reemplaza <código-postal> con un número de 5 dígitos. Si hay una coincidencia
 - Una arquitectura de base de datos bien estructurada ahorra código al momento de consultar códigos postales.
 - La carga inicial, originalmente un script en Python ejecutado con `docker compose exec my-django python load_seeds.py`, pero se cambió a un enfoque asíncrono que llama a Celery para realizar esta chamba.
 - En la búsqueda de la optimización, se agregó Redis para evitar consultas a MySQL por cada solicitud repetida.
+- Proteccion por API-KEY
+- Beats de Celery para tareas periodicas.
 
-Pendiente
+## Pendiente
 
+- Tener una variable `BOOL` en DB que indique si el proceso de cargado se encuentra ejecutandose para evitar procesos innecesarios.
 - Pruebas E2E
 - Implementar el despliegue mediante integración continua hacia un servidor.
-- Crear un `beat` en Celery (tarea periódica) para que diariamente, a las 23:59, descargue el archivo de códigos - postales, lo compare con el actual y, en caso de haber alguna diferencia, inserte las nuevas modificaciones en la base de datos.
-- Proteger los endpoints con una API KEY.
 - Expirar Redis cada vez que se detecten nuevas inserciones en la base de datos desde el `beat``.
-- Tener una variable `BOOL` en DB que indique si el proceso de cargado se encuentra ejecutandose para evitar procesos innecesarios.
